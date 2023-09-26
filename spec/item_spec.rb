@@ -15,8 +15,8 @@ RSpec.describe Item do
         item.add_bid(attendee2, 20)
         item.add_bid(attendee1, 22)
         expect(item.bids).to eq({
-          attendee1 => 20,
-          attendee2 => 22
+          attendee2 => 20,
+          attendee1 => 22
         })
       end
     end
