@@ -67,9 +67,9 @@ RSpec.describe Auction do
     end
     describe '#bidders' do 
       it 'will return an array of bidders names as Strings' do 
-        expect(auction.bidders).to eq(["Megan", "Bob"])
+        expect(auction.bidders).to eq(["Bob", "Megan"])
         item4.add_bid(attendee3, 50)
-        expect(auction.bidders).to eq(["Megan", "Bob", "Mike"])
+        expect(auction.bidders).to eq(["Bob", "Megan", "Mike"])
       end
     end
 
