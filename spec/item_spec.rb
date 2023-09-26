@@ -32,8 +32,8 @@ RSpec.describe Item do
   describe '#close_bidding' do 
     it 'will close bidding on an item, not allowing any new bids' do 
       item.add_bid(attendee2, 20)
-      expect(item.close_bidding(item)).to eq('Bidding in now closed for the "Chalkware Piggy Bank"')
-      expect(item.add_bid(attendee1, 22)).to eq("Bidding on this item is closed!")
+      expect(item.close_bidding).to eq('Bidding in now closed for the Chalkware Piggy Bank.')
+      expect(item.add_bid(attendee1, 22)).to eq("Bidding on this item is closed.")
     end
   end
 end 
