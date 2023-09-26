@@ -16,4 +16,8 @@ class Auction
     @items.find_all { |item| item.bids == {} }
   end
 
+  def potential_revenue
+    bids = @items.find_all { |item| item.bids != {} }
+    bids.map { |item| item.current_high_bid }.sum
+  end
 end
