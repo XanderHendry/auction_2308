@@ -1,3 +1,4 @@
+require 'spec_helper'
 RSpec.describe Auction do 
   let(:item1) { Item.new('Chalkware Piggy Bank') }
   let(:item2) { Item.new('Bamboo Picture Frame') } 
@@ -24,4 +25,5 @@ RSpec.describe Auction do
       expect(auction.item_names).to eq(["Chalkware Piggy Bank", "Bamboo Picture Frame"])
     end
   end
-end 
+end
+ 
