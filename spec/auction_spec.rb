@@ -111,11 +111,11 @@ RSpec.describe Auction do
   end
     it 'will close bidding and "sell" items to attendees' do
       expect(auction.close_auction).to eq({
-        item1 => attendee1,
         item2 => 'Not sold',
         item3 => attendee2,
         item4 => attendee2,
-        item5 => attendee3,
+        item4 => attendee3,
+        item1 => attendee1,
       })
     end
   end

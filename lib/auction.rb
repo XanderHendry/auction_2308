@@ -49,4 +49,32 @@ class Auction
     end
     bidder_info
   end
+
+  def close_auction
+    auction_results = {}
+    unsold = unpopular_items
+    unsold.each do |item| 
+      auction_results[item] = 'Not sold'
+      item.close_bidding
+      item.sell
+    end
+    @items.each do |item|
+      item.close_bidding
+      item.bids.each do |attendee, bid|
+        if item.current_high_bid == bid && attendee.budget > bid
+          attendee.buy_item(bid)
+          item.sell
+          auction_results[item] = attendee
+          # require 'pry'; binding.pry
+        elsif attendee.budget > bid && item.sold == false
+          attendee.buy_item(bid)
+          auction_results[item] = attendee
+          item.sell
+          # require 'pry'; binding.pry
+        end
+      end
+    end
+    # require 'pry'; binding.pry
+    auction_results
+  end
 end

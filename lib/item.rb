@@ -1,10 +1,12 @@
 class Item
   attr_reader :name,
-              :bids
+              :bids,
+              :sold
   def initialize(name)
     @bids = {}
     @name = name
     @open = true
+    @sold = false
   end
 
   def add_bid(attendee, bid)
@@ -24,5 +26,9 @@ class Item
       @open = false
       "Bidding in now closed for the #{@name}." 
     end
+  end
+
+  def sell
+    @sold = true
   end
 end
