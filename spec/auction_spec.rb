@@ -13,6 +13,7 @@ RSpec.describe Auction do
   it 'can initialize' do 
     expect(auction).to be_a(Auction)
     expect(auction.items).to eq([])
+    allow(auction).to receive(:date).and_return("25/11/2023")
   end
   
   describe '#add item' do 
@@ -94,4 +95,6 @@ RSpec.describe Auction do
       end
     end
   end
+
+
 end
