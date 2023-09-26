@@ -31,7 +31,7 @@ RSpec.describe Auction do
       expect(auction.item_names).to eq(["Chalkware Piggy Bank", "Bamboo Picture Frame"])
     end
   end
-  context 'when checking bids on Items in the Auction' do
+  context 'Checking bids on Items in the Auction' do
     before(:each) do 
       auction.add_item(item1)
       auction.add_item(item2)
@@ -52,6 +52,45 @@ RSpec.describe Auction do
     describe '#potential revenue' do 
       it 'will return the sum of all items highest bids' do 
         expect(auction.potential_revenue).to eq(72)
+      end
+    end
+  end
+  context 'Checking Attendees that have placed bids' do
+    before(:each) do 
+      auction.add_item(item1)
+      auction.add_item(item2)
+      auction.add_item(item3)
+      auction.add_item(item4)
+      auction.add_item(item5)
+      item1.add_bid(attendee2, 20)
+      item1.add_bid(attendee1, 22)
+    end
+    describe '#bidders' do 
+      it 'will return an array of bidders names as Strings' do 
+        expect(auction.bidders).to eq(["Megan", "Bob"])
+        item4.add_bid(attendee3, 50)
+        expect(auction.bidders).to eq(["Megan", "Bob", "Mike"])
+      end
+    end
+
+    describe '#bidder info' do 
+      it 'will return a hash with Attendees as keys pointing to a sub hash with their budget and items they have bid on' do
+        item4.add_bid(attendee2, 45)
+        item4.add_bid(attendee3, 50)
+        expect(auction.bidder_info).to eq({
+          attendee1 => {
+            :budget => 50,
+            :items => [item1]
+          },
+          attendee2 => {
+            :budget => 75,
+            :items => [item1, item4]
+          },
+          attendee3 => {
+            :budget => 100,
+            :items => [item4]
+          }
+        })
       end
     end
   end
