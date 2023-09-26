@@ -21,12 +21,28 @@ class Auction
     bids.map { |item| item.current_high_bid }.sum
   end
 
-  def bidders
+  def bidder_finder
     placed_bids = @items.find_all { |item| item.bids != {} }
     bidders = placed_bids.flat_map { |item| item.bids.keys }
-    # require 'pry'; binding.pry
+  end
+
+  def bidders
+    bidders = bidder_finder
     bidders.flat_map do |attendee| 
       attendee.name 
     end
+  end
+
+  def bidder_info
+    bidder_info = {}
+    bidders = bidder_finder
+    bidders.each do |attendee|
+      bidder_items = 
+      bidder_info[attendee] = {
+        :budget => attendee.budget,
+        :items => @items.find_all { |item| item.bids[attendee] }
+      }
+    end
+    bidder_info
   end
 end
