@@ -31,7 +31,7 @@ RSpec.describe Auction do
       expect(auction.item_names).to eq(["Chalkware Piggy Bank", "Bamboo Picture Frame"])
     end
   end
-  context 'when checking bids on Items in the Auction'
+  context 'when checking bids on Items in the Auction' do
     before(:each) do 
       auction.add_item(item1)
       auction.add_item(item2)
